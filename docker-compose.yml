@@ -1,0 +1,33 @@
+version: '3.7'
+volumes:
+  oidcprovider-mysql-data:
+services:
+  oidcprovider-mysql:
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: unsecure
+      MYSQL_DATABASE: oidcprovider
+    volumes:
+      - oidcprovider-mysql-data:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+  web:
+    build:
+      context: .
+      shm_size: 1G
+    ports:
+      - "8080:8080"
+    depends_on:
+      - oidcprovider-mysql
+    environment:
+      PORT: 8080
+      NODE_ENV: production
+      DB_HOST: oidcprovider-mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: unsecure
+      DB_NAME: oidcprovider
+      SECURE_KEY: hello,world
