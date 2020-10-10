@@ -29,7 +29,6 @@ const init = async () => {
       }
       const user = rows[0]
       const res = bcrypt.compareSync(password, user.password)
-      console.log(res)
       if (res === true) {
         return user.id
       }
