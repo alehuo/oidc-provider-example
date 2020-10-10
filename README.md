@@ -9,4 +9,4 @@
 - Client ID: `foo`
 - Client secret: `bar`
 - Scope: `openid profile email`
-5. Click "Start" and loging with `john@doe.com` and `helloworld` as password.
+5. Click "Start" and login with `john@doe.com` and `helloworld` as password.
